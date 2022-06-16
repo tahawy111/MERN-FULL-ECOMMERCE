@@ -2,7 +2,7 @@ const App = () => {
   return (
     <div>
       <header className="app-header">
-        <a href="/">Tahawy</a>
+        <a href="/">Shopping</a>
       </header>
       <main>List Products</main>
     </div>
