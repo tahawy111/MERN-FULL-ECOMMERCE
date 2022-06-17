@@ -5,37 +5,47 @@ body {
   font-family: "Cairo", sans-serif;
 }
 
-header {
-  background-color: #404040;
-  padding: 1rem;
+.site-container {
+  min-height: 100vh;
 }
-
-header a {
-  color: #fff;
-  font-weight: bold;
-  text-decoration: none;
-  font-size: 1.2rem;
-  justify-content: center;
-}
-
 main {
-  padding: 1rem;
+  flex: 1;
+}
+.rating span {
+  color: #ffc000;
+}
+.btn-primary {
+  background: #ffc000;
+  color: #000;
+  border: 1px solid rgb(255 192 0 / 50%);
 }
 
-.products {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.btn-primary:hover {
+  border: 1px solid rgb(255 192 0 / 50%);
+  background: #ffc000;
+  color: #000;
+  color: #000;
 }
-.product {
-  border: 1px solid #404040;
-  margin: 1rem;
-  border-radius: 10px;
-  padding: 10px;
+.btn-primary:focus {
+  color: #000;
+  background-color: #ffc000;
+  border-color: #ffc000;
+  box-shadow: 0 0 0 0.25rem rgb(255 192 0 / 50%);
 }
 
-.product img {
-  width: 100%;
-  max-width: 300px;
-  padding: 10px;
+.btn-primary:active {
+  background: #ffc000;
+  color: #000;
+  border: 1px solid rgb(255 192 0 / 50%);
+  outline: none;
+}
+.btn.btn-primary.active.focus,
+.btn.btn-primary.active:focus,
+.btn.btn-primary.active:hover,
+.btn.btn-primary:active.focus,
+.btn.btn-primary:active:focus {
+  color: #000;
+  background-color: #ffc000;
+  border-color: #ffc000;
+  box-shadow: 0 0 0 0.25rem rgb(255 192 0 / 50%);
 }
