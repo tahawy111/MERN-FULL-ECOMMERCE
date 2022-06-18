@@ -14,6 +14,12 @@ main {
 .rating span {
   color: #ffc000;
 }
+
+.center-amer {
+  display: flex;
+  justify-content: center;
+}
+
 .btn-primary {
   background: #ffc000;
   color: #000;
