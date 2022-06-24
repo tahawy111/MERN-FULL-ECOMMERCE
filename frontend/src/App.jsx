@@ -9,7 +9,7 @@ import Badge from "react-bootstrap/Badge";
 import { useContext } from "react";
 import { Store } from "./Store";
 import CartScreen from "./screens/CartScreen";
-
+// hello
 const App = () => {
   const { state } = useContext(Store);
   const { cart } = state;
