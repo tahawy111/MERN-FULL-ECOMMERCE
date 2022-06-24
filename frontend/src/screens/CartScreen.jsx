@@ -32,7 +32,7 @@ const CartScreen = () => {
     ctxDispatch({ type: "CART_REMOVE_ITEM", payload: item });
   };
   const checkOutHandler = () => {
-    navigate("/signin?redirect=/shopping");
+    navigate("/signin?redirect=/shipping");
   };
   return (
     <div className="w-100">

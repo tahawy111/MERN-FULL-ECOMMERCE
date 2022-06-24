@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+# mongodb+srv://admin:amer-123456@cluster0.uxovq.mongodb.net/shopping?retryWrites=true&w=majority i have to ignore it after project
 node_modules
 /.pnp
 .pnp.js

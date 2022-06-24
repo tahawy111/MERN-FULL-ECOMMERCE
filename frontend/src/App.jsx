@@ -1,22 +1,32 @@
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import HomeScreen from "./screens/HomeScreen";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import ProductScreen from "./screens/ProductScreen";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Container from "react-bootstrap/Container";
 import { LinkContainer } from "react-router-bootstrap";
 import Badge from "react-bootstrap/Badge";
+import NavDropdown from "react-bootstrap/NavDropdown";
 import { useContext } from "react";
 import { Store } from "./Store";
 import CartScreen from "./screens/CartScreen";
+import SigninScreen from "./screens/SigninScreen";
 
 const App = () => {
-  const { state } = useContext(Store);
-  const { cart } = state;
+  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { cart, userInfo } = state;
+
+  const signoutHandler = () => {
+    ctxDispatch({ type: "USER_SIGNOUT" });
+    localStorage.removeItem("userInfo");
+  };
 
   return (
     <BrowserRouter>
       <div className="d-flex flex-column site-container">
+        <ToastContainer position="bottom-center" limit={2}></ToastContainer>
         <header className="app-header">
           <Navbar bg="dark" variant="dark">
             <Container>
@@ -32,6 +42,28 @@ const App = () => {
                     </Badge>
                   )}
                 </Link>
+                {userInfo ? (
+                  <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+                    <LinkContainer to="/profile">
+                      <NavDropdown.Item>User Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to="/orderhistory">
+                      <NavDropdown.Item>Order History</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Divider />
+                    <Link
+                      to="#signout"
+                      onClick={signoutHandler}
+                      className="dropdown-item"
+                    >
+                      Sign Out
+                    </Link>
+                  </NavDropdown>
+                ) : (
+                  <Link className="nav-link" to="/signin">
+                    Sign In
+                  </Link>
+                )}
               </Nav>
             </Container>
           </Navbar>
@@ -40,11 +72,15 @@ const App = () => {
           <Container className="mt-3 center-amer ">
             <Routes>
               <Route
+                path="/signin"
+                element={<SigninScreen className="w-100" />}
+              />
+              <Route path="/" element={<HomeScreen className="w-100" />} />
+              <Route
                 path="/product/:slug"
                 element={<ProductScreen className="w-100" />}
               />
-              <Route path="cart" element={<CartScreen className="w-100" />} />
-              <Route path="/" element={<HomeScreen className="w-100" />} />
+              <Route path="/cart" element={<CartScreen className="w-100" />} />
             </Routes>
           </Container>
         </main>
