@@ -14,6 +14,8 @@ import { Store } from "./Store";
 import CartScreen from "./screens/CartScreen";
 import SigninScreen from "./screens/SigninScreen";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
+import SignupScreen from "./screens/SignupScreen";
+import PaymentMethodScreen from "./screens/PaymentMethodScreen";
 
 const App = () => {
   const { state, dispatch: ctxDispatch } = useContext(Store);
@@ -23,6 +25,7 @@ const App = () => {
     ctxDispatch({ type: "USER_SIGNOUT" });
     localStorage.removeItem("userInfo");
     localStorage.removeItem("shippingAddress");
+    localStorage.removeItem("paymentMethod");
   };
 
   return (
@@ -45,7 +48,10 @@ const App = () => {
                   )}
                 </Link>
                 {userInfo ? (
-                  <NavDropdown title={userInfo.name} id="basic-nav-dropdown">
+                  <NavDropdown
+                    title={userInfo.name || userInfo._doc.name}
+                    id="basic-nav-dropdown"
+                  >
                     <LinkContainer to="/profile">
                       <NavDropdown.Item>User Profile</NavDropdown.Item>
                     </LinkContainer>
@@ -77,6 +83,10 @@ const App = () => {
                 path="/signin"
                 element={<SigninScreen className="w-100" />}
               />
+              <Route
+                path="/signup"
+                element={<SignupScreen className="w-100" />}
+              />
               <Route path="/" element={<HomeScreen className="w-100" />} />
               <Route
                 path="/product/:slug"
@@ -84,6 +94,7 @@ const App = () => {
               />
               <Route path="/cart" element={<CartScreen className="w-100" />} />
               <Route path="/shipping" element={<ShippingAddressScreen />} />
+              <Route path="/payment" element={<PaymentMethodScreen />} />
             </Routes>
           </Container>
         </main>
