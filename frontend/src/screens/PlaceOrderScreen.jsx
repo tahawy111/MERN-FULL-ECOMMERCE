@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useReducer } from 'react';
 import CheckoutSteps from '../components/CheckoutSteps';
 import { Helmet } from 'react-helmet-async';
 import Row from 'react-bootstrap/Row';
@@ -8,11 +8,21 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import { Store } from '../Store';
 import { Link, useNavigate } from 'react-router-dom';
+// const reducer = (state,action) => {
+//   switch(action.type){
+//     case
+//   }
+// }
 
 const PlaceOrderScreen = () => {
   const navigate = useNavigate();
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { cart, userInfo } = state;
+
+  // const [{ loading, error }, dispatch] = useReducer(reducer, {
+  //   loading: false,
+  //   error: '',
+  // });
 
   const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.2345 => 123.23
   cart.itemsPrice = round2(
