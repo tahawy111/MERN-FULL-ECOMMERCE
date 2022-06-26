@@ -69,6 +69,7 @@ const PlaceOrderScreen = () => {
       navigate(`/order/${data.order._id}`);
     } catch (err) {
       dispatch({ type: 'CREATE_FAIL' });
+      toast.error(err.message || 'Request failed with status code 404');
     }
   };
   useEffect(() => {
